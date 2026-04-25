@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build outputs
+dist/
+build/
+cdk.out/
+*.js.map
+*.d.ts
+
+# Environment files - NEVER commit these
+.env
+.env.local
+.env.*.local
+
+# Expo
+.expo/
+expo-env.d.ts
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# CDK
+cdk.out/
+cdk.context.json
+
+# Logs
+*.log
+npm-debug.log*
