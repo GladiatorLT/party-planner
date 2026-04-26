@@ -6,7 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
+    "newArchEnabled": false,
     "scheme": "partyplanner",
     "splash": {
       "image": "./assets/splash-icon.png",
@@ -22,9 +22,10 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#7C3AED"
       },
-      "edgeToEdgeEnabled": true,
+      "edgeToEdgeEnabled": false,
       "predictiveBackGestureEnabled": false,
-      "package": "com.gladiatorlt.partyplanner"
+      "package": "com.gladiatorlt.partyplanner",
+      "versionCode": 2
     },
     "web": {
       "favicon": "./assets/favicon.png",
