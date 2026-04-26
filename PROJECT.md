@@ -471,10 +471,15 @@ party-planner/
 - [ ] Entertainment/vendor management
 - [ ] Seating chart
 - [ ] Day-of schedule
-- [ ] Test on iOS simulator (EAS build or Expo Go)
-- [ ] Test on Android emulator
+- [x] EAS project created: @gladiatorlt/party-planner (ID: 016f10ee-7b87-4102-a9c7-d4986617d986)
+- [x] EAS env vars set for preview + production environments
+- [x] .npmrc added with legacy-peer-deps for EAS build servers
+- [x] eas.json configured: preview=APK internal, production=AAB Play Store
+- [ ] EAS Build — Android preview APK → direct install (build: 5edd8e57 in progress)
+- [ ] Test on Android device — login, create event, AI questionnaire
+- [ ] EAS Build — Android production AAB → Play Store internal track
+- [ ] Set up Google Play Console + service account for eas submit
 - [ ] EAS Build — iOS production build → TestFlight
-- [ ] EAS Build — Android production build → Play Store internal
 
 ### 🔲 Phase 5 — Product (Future)
 - [ ] Payment integration (Stripe or RevenueCat for in-app purchases)
