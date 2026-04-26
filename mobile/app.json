@@ -32,6 +32,13 @@
     },
     "plugins": [
       "expo-router"
-    ]
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "016f10ee-7b87-4102-a9c7-d4986617d986"
+      }
+    },
+    "owner": "gladiatorlt"
   }
 }
