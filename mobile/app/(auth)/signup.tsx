@@ -2,11 +2,13 @@ import { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, ActivityIndicator } from 'react-native';
 import { router } from 'expo-router';
 import { auth } from '../../src/services/auth';
+import { colors } from '../../src/theme';
 
 export default function SignupScreen() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [code, setCode] = useState('');
   const [step, setStep] = useState<'signup' | 'verify'>('signup');
   const [loading, setLoading] = useState(false);
@@ -46,24 +48,41 @@ export default function SignupScreen() {
 
       <Text style={styles.title}>{step === 'signup' ? 'Create Account' : 'Verify Email'}</Text>
       <Text style={styles.subtitle}>
-        {step === 'signup' ? 'Free forever. Pay only per event.' : `Enter the code sent to ${email}`}
+        {step === 'signup' ? 'Free forever. Pay only per event.' : `Check ${email} for your code`}
       </Text>
 
       <View style={styles.form}>
         {step === 'signup' ? (
           <>
-            <TextInput style={styles.input} placeholder="Username" placeholderTextColor="#9CA3AF" value={username} onChangeText={setUsername} autoCapitalize="none" />
-            <TextInput style={styles.input} placeholder="Email" placeholderTextColor="#9CA3AF" value={email} onChangeText={setEmail} keyboardType="email-address" autoCapitalize="none" />
-            <TextInput style={styles.input} placeholder="Password (min 6 chars)" placeholderTextColor="#9CA3AF" value={password} onChangeText={setPassword} secureTextEntry />
+            <View style={styles.inputWrapper}>
+              <Text style={styles.label}>Username</Text>
+              <TextInput style={styles.input} placeholder="Choose a username" placeholderTextColor={colors.textDim} value={username} onChangeText={setUsername} autoCapitalize="none" />
+            </View>
+            <View style={styles.inputWrapper}>
+              <Text style={styles.label}>Email</Text>
+              <TextInput style={styles.input} placeholder="your@email.com" placeholderTextColor={colors.textDim} value={email} onChangeText={setEmail} keyboardType="email-address" autoCapitalize="none" />
+            </View>
+            <View style={styles.inputWrapper}>
+              <Text style={styles.label}>Password</Text>
+              <View style={styles.passwordRow}>
+                <TextInput style={[styles.input, { flex: 1, marginBottom: 0 }]} placeholder="Min 6 characters" placeholderTextColor={colors.textDim} value={password} onChangeText={setPassword} secureTextEntry={!showPassword} />
+                <TouchableOpacity style={styles.eyeBtn} onPress={() => setShowPassword(v => !v)}>
+                  <Text style={styles.eyeText}>{showPassword ? '🙈' : '👁️'}</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
             <TouchableOpacity style={styles.button} onPress={handleSignup} disabled={loading}>
-              {loading ? <ActivityIndicator color="#fff" /> : <Text style={styles.buttonText}>Create Account</Text>}
+              {loading ? <ActivityIndicator color="#fff" /> : <Text style={styles.buttonText}>Create Account →</Text>}
             </TouchableOpacity>
           </>
         ) : (
           <>
-            <TextInput style={styles.input} placeholder="Verification code" placeholderTextColor="#9CA3AF" value={code} onChangeText={setCode} keyboardType="number-pad" />
+            <View style={styles.inputWrapper}>
+              <Text style={styles.label}>Verification Code</Text>
+              <TextInput style={styles.input} placeholder="6-digit code" placeholderTextColor={colors.textDim} value={code} onChangeText={setCode} keyboardType="number-pad" />
+            </View>
             <TouchableOpacity style={styles.button} onPress={handleVerify} disabled={loading}>
-              {loading ? <ActivityIndicator color="#fff" /> : <Text style={styles.buttonText}>Verify</Text>}
+              {loading ? <ActivityIndicator color="#fff" /> : <Text style={styles.buttonText}>Verify →</Text>}
             </TouchableOpacity>
           </>
         )}
@@ -73,13 +92,18 @@ export default function SignupScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#F9FAFB', padding: 24, paddingTop: 60 },
+  container: { flex: 1, backgroundColor: colors.bg, padding: 28, paddingTop: 60 },
   back: { marginBottom: 32 },
-  backText: { color: '#7C3AED', fontSize: 16 },
-  title: { fontSize: 28, fontWeight: 'bold', color: '#111827', marginBottom: 8 },
-  subtitle: { fontSize: 14, color: '#6B7280', marginBottom: 32 },
-  form: { gap: 16 },
-  input: { backgroundColor: '#fff', borderWidth: 1, borderColor: '#E5E7EB', borderRadius: 12, padding: 16, fontSize: 16, color: '#111827' },
-  button: { backgroundColor: '#7C3AED', borderRadius: 12, padding: 16, alignItems: 'center' },
-  buttonText: { color: '#fff', fontSize: 16, fontWeight: '600' },
+  backText: { color: colors.accentGlow, fontSize: 15 },
+  title: { fontSize: 28, fontWeight: 'bold', color: colors.text, marginBottom: 6 },
+  subtitle: { fontSize: 13, color: colors.textSecondary, marginBottom: 36 },
+  form: { gap: 20 },
+  inputWrapper: { gap: 6 },
+  label: { fontSize: 11, color: colors.textSecondary, letterSpacing: 1, textTransform: 'uppercase' },
+  input: { backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, borderRadius: 10, padding: 14, fontSize: 15, color: colors.text },
+  passwordRow: { flexDirection: 'row', alignItems: 'center', gap: 8 },
+  eyeBtn: { backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, borderRadius: 10, padding: 14 },
+  eyeText: { fontSize: 16 },
+  button: { backgroundColor: colors.accent, borderRadius: 10, padding: 16, alignItems: 'center', marginTop: 4, shadowColor: colors.accent, shadowOpacity: 0.4, shadowRadius: 12, shadowOffset: { width: 0, height: 4 } },
+  buttonText: { color: '#fff', fontSize: 16, fontWeight: '700' },
 });

@@ -253,7 +253,7 @@ export class PartyPlannerStack extends cdk.Stack {
     const api = new apigateway.RestApi(this, 'RestApi', {
       restApiName: 'party-planner-api',
       defaultCorsPreflightOptions: {
-        allowOrigins: ['http://localhost:3000', 'http://localhost:5173'],
+        allowOrigins: apigateway.Cors.ALL_ORIGINS,
         allowMethods: apigateway.Cors.ALL_METHODS,
         allowHeaders: ['Content-Type', 'Authorization'],
       },

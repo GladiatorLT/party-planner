@@ -1,7 +1,7 @@
 # Party Planner App — Full Project Plan
 
 > **Living document** — checkboxes track real progress. Check off items as they are completed.
-> Last updated: 2025-05-13
+> Last updated: 2025-05-14
 
 ---
 
@@ -436,24 +436,36 @@ party-planner/
   - S3 Bucket: `party-planner-assets-522814737649`
 - [x] Fixed: SES email changed from noreply@ to contact@mim-online.com (verified identity)
 
-### 🔲 Phase 2 — Expo App Setup
-- [ ] `npx create-expo-app mobile --template` in party-planner/
-- [ ] Install NativeWind, Zustand, React Query, Expo Router
-- [ ] Set up `.env` with API URL + Cognito IDs
-- [ ] Auth screens (login, signup, forgot password) — Cognito USER_PASSWORD_AUTH via fetch
-- [ ] Basic navigation structure (Expo Router)
-- [ ] Unit test setup (Jest)
+### ✅ Phase 2 — Expo App Setup
+- [x] `npx create-expo-app mobile --template blank-typescript`
+- [x] Installed: expo-router, NativeWind, Zustand, React Query, AsyncStorage, react-native-web
+- [x] `.env` configured with API URL + Cognito IDs
+- [x] `src/services/auth.ts` — Cognito USER_PASSWORD_AUTH via direct fetch (no SRP)
+- [x] `src/services/api.ts` — all backend API calls
+- [x] `src/store/authStore.ts` — Zustand auth store with AsyncStorage persistence
+- [x] `app/_layout.tsx` — root layout with React Query
+- [x] `app/index.tsx` — root redirect based on auth state
+- [x] `app/(auth)/login.tsx` — dark theme login + password visibility toggle
+- [x] `app/(auth)/signup.tsx` — signup + email verification + password visibility
+- [x] `app/(app)/dashboard.tsx` — dark theme events list with empty state
+- [x] `app/(app)/account.tsx` — account screen with logout
+- [x] `app/(app)/events/new.tsx` — AI questionnaire chat screen
+- [x] `src/theme.ts` — dark futuristic blue theme
+- [x] CORS fixed — API Gateway allows all origins
+- [x] Tested in browser — login, signup, dashboard working
 
-### 🔲 Phase 3 — Core Features (Web First)
-- [ ] AI Questionnaire chat flow
-- [ ] Event dashboard (post-questionnaire)
-- [ ] Guest list + add/edit/delete guests
-- [ ] RSVP guest portal (public /guest/:token route)
-- [ ] AI invitation generator
-- [ ] SES invitation sending
-- [ ] Timeline + tasks (AI generated)
-- [ ] Budget tracker
-- [ ] Menu planner (AI)
+### ✅ Phase 3 — Core Features (Web First)
+- [x] AI Questionnaire chat flow
+- [x] `forgot-password.tsx` screen
+- [x] Event hub screen (`/events/[id]` — AI summary, section grid, delete)
+- [x] Timeline + tasks (AI generated, checkable)
+- [x] Guest list + add/delete + RSVP tracking
+- [x] Menu planner (AI generated + shopping list)
+- [x] Budget tracker (AI generated, track actual vs estimated)
+- [x] Invitations (AI generated HTML, send via SES)
+- [x] AI Chat per event (persistent assistant)
+- [x] RSVP guest portal (public `/guest/[token]` route)
+- [x] EventHeader component with tab navigation across all event screens
 
 ### 🔲 Phase 4 — Polish & Mobile Testing
 - [ ] Entertainment/vendor management
