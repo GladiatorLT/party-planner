@@ -8,7 +8,7 @@ const dynamo = DynamoDBDocumentClient.from(new DynamoDBClient({}));
 const ses = new SESClient({ region: 'us-east-1' });
 const INVITATIONS_TABLE = process.env.INVITATIONS_TABLE!;
 const GUESTS_TABLE = process.env.GUESTS_TABLE!;
-const FROM_EMAIL = 'noreply@mim-online.com';
+const FROM_EMAIL = 'contact@mim-online.com';
 
 const response = (statusCode: number, body: any): APIGatewayProxyResult => ({
   statusCode,

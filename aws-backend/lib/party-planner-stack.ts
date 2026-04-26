@@ -38,7 +38,7 @@ export class PartyPlannerStack extends cdk.Stack {
       signInAliases: { username: true, email: true },
       autoVerify: { email: true },
       email: cognito.UserPoolEmail.withSES({
-        fromEmail: 'noreply@mim-online.com',
+        fromEmail: 'contact@mim-online.com',
         fromName: 'Party Planner',
         sesRegion: 'us-east-1',
       }),

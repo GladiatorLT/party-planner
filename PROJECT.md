@@ -424,12 +424,17 @@ party-planner/
 - [x] Lambda handlers written (events, guests, ai, invitations, vendors, websocket)
 - [x] Pricing model decided: per-event, accounts free
 
-### 🔲 Phase 1 — Backend Deploy
-- [ ] `npm install` in aws-backend
-- [ ] `npx cdk bootstrap` (if not already done)
-- [ ] `npx cdk deploy` — deploy all infrastructure
-- [ ] Note outputs: API URL, WS URL, Cognito Pool ID, Client ID
-- [ ] Test API endpoints with curl
+### ✅ Phase 1 — Backend Deploy
+- [x] `npm install` in aws-backend
+- [x] `npx cdk bootstrap` (if not already done)
+- [x] `npx cdk deploy` — deployed successfully (87s)
+- [x] Outputs recorded:
+  - API URL: `https://smdjwvwwb0.execute-api.us-east-1.amazonaws.com/prod/`
+  - WS URL: `wss://8tndqfawjd.execute-api.us-east-1.amazonaws.com/prod`
+  - Cognito User Pool ID: `us-east-1_gtagInyk4`
+  - Cognito Client ID: `60qkn54src8c0q1m2d476c3vnv`
+  - S3 Bucket: `party-planner-assets-522814737649`
+- [x] Fixed: SES email changed from noreply@ to contact@mim-online.com (verified identity)
 
 ### 🔲 Phase 2 — Expo App Setup
 - [ ] `npx create-expo-app mobile --template` in party-planner/
